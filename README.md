@@ -1,4 +1,8 @@
-# README - Global Exam Automation Script
+# Global Exam Automation Script
+
+<p align="center">
+  <img src="./screenshot.png" alt="Global Exam Automation" width="600"/>
+</p>
 
 This script automates login and exercise solving on **Global Exam** until 20 hours of activity are reached.
 
