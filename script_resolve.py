@@ -43,8 +43,8 @@ def safe_click(page, selector, timeout=5000):
 def real_click(page, selector):
     """Physically simulate a click by moving the mouse to the element center."""
     element = page.locator(selector).first
-    element.wait_for(state="visible", timeout=5000)
-    box = element.bounding_box(timeout=5000)
+    element.wait_for(state="visible", timeout=10000)
+    box = element.bounding_box(timeout=10000)
     if not box:
         print(f"❌ Cannot get bounding box for {selector}")
         return False
@@ -246,7 +246,7 @@ def solve_question(page):
                 try:
                     for selector in selectors:
                         real_click(page, selector)
-                        page.wait_for_timeout(500)
+                        page.wait_for_timeout(5000)
                         print(f"✅ Clicked selector '{selector}'")
                     click_valider(page)
                     click_passer_continuer(page)
