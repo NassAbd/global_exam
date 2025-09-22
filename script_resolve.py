@@ -144,9 +144,10 @@ def click_passer_continuer(page, timeout=5000):
     passer_selector = "button:has(span:has-text('Passer'))"
     continuer_selector = "button:has(span:has-text('Continuer'))"
     suivant_selector = "button:has(span:has-text('Suivant'))"
+    terminer_selector = "button:has(span:has-text('Terminer'))"
 
     try:
-        page.wait_for_selector(f"{passer_selector}, {continuer_selector}, {suivant_selector}", state="visible", timeout=timeout)
+        page.wait_for_selector(f"{passer_selector}, {continuer_selector}, {suivant_selector}, {terminer_selector}", state="visible", timeout=timeout)
     except Exception:
         print("ℹ️ No 'Skip' or 'Continue' button visible in time")
         return
@@ -174,6 +175,13 @@ def click_passer_continuer(page, timeout=5000):
             return
         except Exception as e:
             print(f"⚠️ Failed to click 'Next' ({e})")
+    elif page.locator(terminer_selector).first.is_visible():
+        print("✅ 'Finish' button visible, clicking")
+        try:
+            page.locator(terminer_selector).first.click(force=True, timeout=timeout, no_wait_after=True)
+            return
+        except Exception as e:
+            print(f"⚠️ Failed to click 'Finish' ({e})")
 
 def click_valider(page):
     valider_selector = "button:has(span:has-text('Valider'))"
